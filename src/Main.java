@@ -21,6 +21,8 @@ public class Main {
 
         zipFiles("C://Games/savegames/savegames.zip", listDir);
 
+        delFile(listDir);
+
         openZip("C://Games/savegames/savegames.zip", "C://Games/savegames");
         GameProgress saveProgress = openProgress("C://Games/savegames/save1.dat");
         GameProgress saveProgress2 = openProgress("C://Games/savegames/save2.dat");
@@ -55,13 +57,6 @@ public class Main {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        for (String dir : directories) {
-            File fileDel = new File(dir);
-            if (fileDel.delete()) {
-                System.out.println(dir + " файл удален");
-            } else System.out.println(dir + " файл не удален");
-        }
     }
 
     public static void openZip(String dirzip, String dir) {
@@ -95,5 +90,14 @@ public class Main {
             System.out.println(ex.getMessage());
         }
         return pull;
+    }
+
+    public static void delFile (List<String> directories) {
+        for (String dir : directories) {
+            File fileDel = new File(dir);
+            if (fileDel.delete()) {
+                System.out.println(dir + " файл удален");
+            } else System.out.println(dir + " файл не удален");
+        }
     }
 }
